@@ -1,0 +1,39 @@
+name: Reconocer secuencia Huffman
+start state: q0
+accept state: q_accept
+blank: ' '
+input: '111011110 1001011100'
+
+table:
+  # Raíz del árbol
+  q0:
+    0: {R: q0, write: F}         # Código F (0)
+    1: {R: q1, write: '*'}         # C, D, E, A, B comienzan por 1
+    ' ': {L: q_accept}
+
+  # Después de leer 1
+  q1:
+    0: {R: q10, write: '*'}        # camino hacia C o D
+    1: {R: q11, write: '*'}        # camino hacia E, A, B
+    ' ': {L: q_accept}    
+
+  # 10 leídos
+  q10:
+    0: {R: q0, write: C}         # 100 → C
+    1: {R: q0, write: D}         # 101 → D
+    ' ': {L: q_accept}    
+
+  # 11 leídos
+  q11:
+    0: {R: q0, write: E}         # 110 → E
+    1: {R: q111, write: '*'}       # 111x → A o B
+    ' ': {L: q_accept}    
+
+  # 111 leídos
+  q111:
+    0: {R: q0, write: A}         # 1110 → A
+    1: {R: q0, write: B}         # 1111 → B
+    ' ': {L: q_accept}    
+
+
+  q_accept:

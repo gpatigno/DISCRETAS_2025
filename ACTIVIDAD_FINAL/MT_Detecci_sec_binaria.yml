@@ -1,0 +1,34 @@
+name: Detección de secuencia binaria '1011'
+input: '000101 11111001111'
+blank: ' '
+start state: q0
+table:
+  q0:
+    0: R
+    1: {R: q1}
+    ' ': {L: q_NotFound, write: N}
+
+  q1:
+    0: {R: q2}
+    1: {R: q1}
+    ' ': {L: q_NotFound, write: N}
+
+  q2:
+    1: {R: q3}
+    0: {R: q0}
+    ' ': {L: q_NotFound, write: N}
+
+  q3:
+    1: {R: q_Found}
+    0: {R: q0}
+    ' ': {L: q_NotFound, write: N}
+  
+  q_Found:
+    [0, 1, ' ']: {write: F, R: End}
+  
+
+  q_NotFound:
+    [0, 1, ' ']: {R: End}
+  
+  End:
+  
