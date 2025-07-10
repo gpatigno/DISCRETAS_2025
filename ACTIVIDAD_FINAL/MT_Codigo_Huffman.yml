@@ -35,5 +35,4 @@ table:
     1: {R: q0, write: B}         # 1111 → B
     ' ': {L: q_accept}    
 
-
   q_accept:
