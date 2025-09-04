@@ -1,1 +1,0 @@
-# Repositorio de código estudiado en el curso de Matemáticas Discretas de la Universidad de Antioquia.
